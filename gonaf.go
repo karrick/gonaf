@@ -8,10 +8,10 @@ import (
 
 // JsonFloat is a float64 with JSON encoding and decoding support for NaN, +Infinity, and -Infinity.
 //
-// type MetricSeries struct {
-//     Times  []time.Time
-//     Values []gonaf.JsonFloat
-// }
+// 	type MetricSeries struct {
+// 	    Times  []time.Time
+// 	    Values []gonaf.JsonFloat
+// 	}
 type JsonFloat float64
 
 // MarshalJSON implements the json.Marshaler interface for the JsonFloat type, encoding NaN,

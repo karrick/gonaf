@@ -29,32 +29,35 @@ the json.Marshaler and json.Unmarshaler methods, a more typical use is demonstra
         Values []gonaf.JsonFloat
     }
 
-    baseTime := time.Now()
-    source := MetricSeries{
-        Times:  []time.Time{
-            baseTime.Add(time.Minute),
-            baseTime.Add(2 * time.Minute),
-            baseTime.Add(3 * time.Minute),
-            baseTime.Add(4 * time.Minute),
-        },
-        Values: []gonaf.JsonFloat{
-            gonaf.JsonFloat(math.Pi),
-            gonaf.JsonFloat(math.NaN()),
-            gonaf.JsonFloat(math.Inf(1)),
-            gonaf.JsonFloat(math.Inf(-1)),
-        },
-    }
-    bb := new(bytes.Buffer)
-    encoder := json.NewEncoder(bb)
 
-    if err := encoder.Encode(source); err != nil {
-        return fmt.Errorf("cannot encode MetricSeries: %s", err)
-    }
-
-    decoder := json.NewDecoder(bb)
-    var destination MetricSeries
-
-    if err := decoder.Decode(&destination); err != nil {
-        return fmt.Errorf("cannot decode MetricSeries: %s", err)
+    func example() {
+		baseTime := time.Now()
+		source := MetricSeries{
+		    Times:  []time.Time{
+		        baseTime.Add(time.Minute),
+		        baseTime.Add(2 * time.Minute),
+		        baseTime.Add(3 * time.Minute),
+		        baseTime.Add(4 * time.Minute),
+		    },
+		    Values: []gonaf.JsonFloat{
+		        gonaf.JsonFloat(math.Pi),
+		        gonaf.JsonFloat(math.NaN()),
+		        gonaf.JsonFloat(math.Inf(1)),
+		        gonaf.JsonFloat(math.Inf(-1)),
+		    },
+		}
+		bb := new(bytes.Buffer)
+		encoder := json.NewEncoder(bb)
+		
+		if err := encoder.Encode(source); err != nil {
+		    return fmt.Errorf("cannot encode MetricSeries: %s", err)
+		}
+		
+		decoder := json.NewDecoder(bb)
+		var destination MetricSeries
+		
+		if err := decoder.Decode(&destination); err != nil {
+		    return fmt.Errorf("cannot decode MetricSeries: %s", err)
+		}
     }
 ```
