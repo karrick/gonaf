@@ -6,7 +6,8 @@ import (
 	"strconv"
 )
 
-// JsonFloat is a float64 with JSON encoding and decoding support for NaN, +Infinity, and -Infinity.
+// JsonFloat is a float64 with JSON encoding and decoding support for NaN,
+// +Infinity, and -Infinity.
 //
 // 	type MetricSeries struct {
 // 	    Times  []time.Time
@@ -14,12 +15,14 @@ import (
 // 	}
 type JsonFloat float64
 
-// MarshalJSON implements the json.Marshaler interface for the JsonFloat type, encoding NaN,
-// +Infinity, and -Infinity using conventions found in many other JSON serialization libraries.
+// MarshalJSON implements the json.Marshaler interface for the JsonFloat type,
+// encoding NaN, +Infinity, and -Infinity using conventions found in many other
+// JSON serialization libraries.
 //
-// Normally one doesn't directly invoke a type's MarshalJSON method, but it's called by the standard
-// library's json.Marshal method when encoding a value that is of the specified type.  Rather than
-// demonstrate directly invoking the MarshalJSON method, a more typical use is demonstrated below.
+// Normally one doesn't directly invoke a type's MarshalJSON method, but it's
+// called by the standard library's json.Marshal method when encoding a value
+// that is of the specified type.  Rather than demonstrate directly invoking the
+// MarshalJSON method, a more typical use is demonstrated below.
 //
 // 	baseTime := time.Now()
 // 	source := MetricSeries{
@@ -54,13 +57,14 @@ func (jf JsonFloat) MarshalJSON() ([]byte, error) {
 	return []byte(strconv.FormatFloat(float64(jf), 'g', -1, 64)), nil
 }
 
-// UnmarshalJSON implements the json.Unmarshaler interface for the JsonFloat type, decoding NaN,
-// +Infinity, and -Infinity using conventions found in many other JSON serialization libraries.
+// UnmarshalJSON implements the json.Unmarshaler interface for the JsonFloat
+// type, decoding NaN, +Infinity, and -Infinity using conventions found in many
+// other JSON serialization libraries.
 //
-// Normally one doesn't directly invoke a type's UnmarshalJSON method, but it's called by the
-// standard library's json.Unmarshal method when decoding a value that is of the specified type.
-// Rather than demonstrate directly invoking the UnmarshalJSON method, a more typical use is
-// demonstrated below.
+// Normally one doesn't directly invoke a type's UnmarshalJSON method, but it's
+// called by the standard library's json.Unmarshal method when decoding a value
+// that is of the specified type.  Rather than demonstrate directly invoking the
+// UnmarshalJSON method, a more typical use is demonstrated below.
 //
 // 	decoder := json.NewDecoder(someReader)
 // 	var destination MetricSeries
