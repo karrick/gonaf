@@ -3,6 +3,10 @@
 Go Not-A-Float is a library for encoding and decoding IEEE 754 values
 to and from JSON.
 
+*DEPRECATED* Please consider using
+[https://github.com/karrick/goejs](https://github.com/karrick/goejs),
+which serializes both strings and numbers in and out of JSON.
+
 Documentation is available via
 [![GoDoc](https://godoc.org/github.com/karrick/gonaf?status.svg)](https://godoc.org/github.com/karrick/gonaf).
 
